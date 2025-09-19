@@ -1,0 +1,4 @@
+.env
+.dockerignore
+src/__pycache__/
+src/testing.py
