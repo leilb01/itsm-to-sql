@@ -52,6 +52,7 @@ def fetch_records(table, query, fields, limit=1000, max_records=None):
             "sysparm_fields": fields,
             "sysparm_limit": limit,
             "sysparm_offset": offset,
+            "sysparm_display_value": "true"
         }
         resp = requests.get(url, headers=headers, params=params, timeout=30)
         resp.raise_for_status()
@@ -81,11 +82,11 @@ def fetch_cmdb_ci(query, limit=1000, max_records=None):
     """Fetch cmdb_ci records with specific query (no default)."""
     fields = (
         "sys_id,name,u_customer_device_name,u_system_name,u_customer_integration_id,"
-        "location,location.u_site_id,model_id,manufacturer,serial_number,u_category,"
+        "location.u_site_id,model_id,manufacturer,serial_number,u_category,"
         "category,sys_class_name,ip_address,u_status,operational_status,"
         "u_ci_external_system_id,mac_address,u_priority,company,sys_created_on,"
         "sys_updated_by,sys_updated_on,u_license_key,u_line_of_business,"
-        "u_os_serial,u_rim_configuration,u_scope,u_service_properties"
+        "u_os_serial,u_rim_configuration,u_service_properties"
     )
     return fetch_records("cmdb_ci", query, fields, limit, max_records)
 
